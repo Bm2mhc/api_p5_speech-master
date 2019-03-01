@@ -1,4 +1,3 @@
-
 let words = [];
 let sentence = "";
 let resultP;
@@ -47,8 +46,7 @@ function showResult() {
         sentence = myRec.resultString;
         resultP.html(sentence);
 
-        if (sentence.includes("orange")) {
-        }
+        if (sentence.includes("orange")) {}
 
     }
 }
