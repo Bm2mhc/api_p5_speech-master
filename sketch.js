@@ -4,11 +4,9 @@ let resultP;
 let leftDiv;
 let counter;
 let cnv, myRec, btn, txt;
-let img;
-let kakao;
+let img, imageholder;
 
 function setup() {
-
     img = loadImage('img/kakao-vitamin-d-quelle-teaser.jpg');
     let SpeechRecognition = window.webkitSpeechRecognition ||
         window.mozSpeechRecognition ||
@@ -44,7 +42,7 @@ function setup() {
 }
 
 function draw() {
-    image(img, 0, height / 2, img.width / 2, img.height / 2);
+  
 }
 
 function showResult() {
@@ -52,7 +50,9 @@ function showResult() {
         sentence = myRec.resultString;
         resultP.html(sentence);
 
-        if (sentence.includes("orange")) {}
+        if (sentence.includes("Coco")) {
+            image(img, 0, height / 2, img.width / 2, img.height / 2);
+        }
 
     }
 }
