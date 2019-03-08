@@ -26,20 +26,33 @@ function setup() {
     pen = {
         x: width / 2,
         y: height / 2,
-        size: 8,
-        col: color(248, 248, 255, 150),
+        size: 5,
+        col: color(255, 255, 255),
         show: function(){
+            noStroke();
             fill(this.col),
             ellipseMode(CENTER),
-            ellipse(this.x, this.y, this.size)
+            ellipse(this.x, this.y, this.size, this.size)
+        },
+        bounce: function(){
+            this.x = this.x < 0 ? 0 : this.x > width ? width : this.x;
+            this.y = this.y < 0 ? 0 : this.y > height ? height : this.y;
+           
+            
         }
     }
     console.log("pen findes, og dens x værdi er: " + pen.x);
 }
 
 function draw() {
+    if (direction == "left") pen.x-=1;
+    if (direction == "up") pen.y-=1;
+    if (direction == "down") pen.y+=1;
+    if (direction == "right") pen.x+=1; 
+    pen.bounce();
     pen.show();
 }
+
 
 function showResult() {
     if (myRec.resultValue == true) {
@@ -47,6 +60,7 @@ function showResult() {
         displayWord.html(word.toLowerCase());
         switch(word){
             case 'left':
+            case 'lift':
                 direction = "left"
                 break;
             case 'right':
@@ -58,8 +72,14 @@ function showResult() {
             case 'down':
                 direction = "down"
                 break;
-            default:
+            case 'bigger':
+                pen.size +=1;
                 break;
+            case 'bigger':
+                pen.size -=1;
+                break;
+            default:
+            direction = "stop"
         }
     }
 }
