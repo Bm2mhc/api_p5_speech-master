@@ -2,7 +2,7 @@
 //reference: http://ability.nyu.edu/p5.js-speech/
 //Cloned from github.com/simmoe/api_p5_speech/
 
-let myRec, browserCompatible, pen, direction, displayWord;
+let myRec, browserCompatible, pen, direction, displayWord, timer, whattimeisit = 1000;
 
 
 function setup() {
@@ -21,44 +21,52 @@ function setup() {
         myRec.interimResults = true;
         myRec.onResult = showResult;
         myRec.start();
-    }    
+    }
     displayWord = createDiv();
     pen = {
         x: width / 2,
         y: height / 2,
         size: 5,
         col: color(255, 255, 255),
-        show: function(){
+        show: function () {
             noStroke();
             fill(this.col),
-            ellipseMode(CENTER),
-            ellipse(this.x, this.y, this.size, this.size)
+                ellipseMode(CENTER),
+                ellipse(this.x, this.y, this.size, this.size)
         },
-        bounce: function(){
+        bounce: function () {
             this.x = this.x < 0 ? 0 : this.x > width ? width : this.x;
             this.y = this.y < 0 ? 0 : this.y > height ? height : this.y;
-           
-            
+
+
         }
     }
     console.log("pen findes, og dens x værdi er: " + pen.x);
 }
 
+function dick1() {
+    
+    console.log("hej");
+}
+
 function draw() {
-    if (direction == "left") pen.x-=1;
-    if (direction == "up") pen.y-=1;
-    if (direction == "down") pen.y+=1;
-    if (direction == "right") pen.x+=1; 
+    if (direction == "left") pen.x -= 1;
+    if (direction == "up") pen.y -= 1;
+    if (direction == "down") pen.y += 1;
+    if (direction == "right") pen.x += 1;
+
+
     pen.bounce();
     pen.show();
 }
+
 
 
 function showResult() {
     if (myRec.resultValue == true) {
         word = myRec.resultString.split(' ').pop();
         displayWord.html(word.toLowerCase());
-        switch(word){
+        switch (word) {
             case 'left':
             case 'lift':
                 direction = "left"
@@ -73,13 +81,23 @@ function showResult() {
                 direction = "down"
                 break;
             case 'bigger':
-                pen.size +=1;
+                pen.size += 1;
                 break;
             case 'bigger':
-                pen.size -=1;
+                pen.size -= 1;
+                break;
+            case 'did':
+            case 'dick':
+                direction = "dick"
+                if (millis() - whattimeisit > 3000) {
+                    pen.y += 1
+                   // timer = setTimeout(dick1, 10000);
+                    whattimeisit = millis();
+                    console.log("hej2.0")
+                }
                 break;
             default:
-            direction = "stop"
+                direction = "stop"
         }
     }
 }
