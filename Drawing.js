@@ -2,7 +2,7 @@
 //reference: http://ability.nyu.edu/p5.js-speech/
 //Cloned from github.com/simmoe/api_p5_speech/
 
-let myRec, browserCompatible, pen, direction, displayWord, timer;
+let myRec, browserCompatible, pen, direction, displayWord, timer, size;
 let dick = false;
 let LOL = false;
 
@@ -111,10 +111,10 @@ function showResult() {
                 direction = "down"
                 break;
             case 'bigger':
-                pen.size += 1;
+                pen.size +=1;
                 break;
-            case 'bigger':
-                pen.size -= 1;
+            case 'small':
+                pen.size -=1;
                 break;
             case 'did':
             case 'dik':
