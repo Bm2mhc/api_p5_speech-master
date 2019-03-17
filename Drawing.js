@@ -45,7 +45,7 @@ function setup() {
 }
 
 function dick1() {
-    
+
     console.log("hej");
 }
 
@@ -89,12 +89,6 @@ function showResult() {
             case 'did':
             case 'dick':
                 direction = "dick"
-                if (millis() - whattimeisit > 3000) {
-                    pen.y += 1
-                   // timer = setTimeout(dick1, 10000);
-                    whattimeisit = millis();
-                    console.log("hej2.0")
-                }
                 break;
             default:
                 direction = "stop"
